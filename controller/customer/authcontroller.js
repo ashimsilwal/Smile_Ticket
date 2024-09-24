@@ -131,20 +131,108 @@ module.exports.getusers = async (request, response) => {
 
 module.exports.getCount = async (request, response) => {
   const connection = await db.conn();
+
   const getquery = "SELECT COUNT(*) AS results_count FROM register";
-  connection.query(getquery, (err, result) => {
+  const getticketcount = "SELECT COUNT(*) AS ticket_count FROM ticket";
+  const sumticket = "SELECT SUM(price) AS ticket_amount FROM ticket";
+
+  try {
+    const results = await Promise.all([
+      new Promise((resolve, reject) => {
+        connection.query(getquery, (err, result) => {
+          if (err) return reject(err);
+          resolve(result[0]);
+        });
+      }),
+      new Promise((resolve, reject) => {
+        connection.query(getticketcount, (err, result) => {
+          if (err) return reject(err);
+          resolve(result[0]);
+        });
+      }),
+      new Promise((resolve, reject) => {
+        connection.query(sumticket, (err, result) => {
+          if (err) return reject(err);
+          resolve(result[0]);
+        });
+      }),
+    ]);
+
+    // Release connection
     connection.release();
-    if (err) {
-      return response.status(400).json({
-        message: "Some problem occured".err,
-        success: false,
-      });
-    } else {
-      return response.status(200).json({
-        message: "success",
-        success: true,
-        data: result[0],
-      });
-    }
-  });
+
+    // Combine results into a single object
+    const combinedResults = {
+      results_count: results[0].results_count,
+      ticket_count: results[1].ticket_count,
+      ticket_amount: results[2].ticket_amount,
+    };
+
+    return response.status(200).json({
+      message: "success",
+      success: true,
+      data: combinedResults,
+    });
+  } catch (err) {
+    // Release connection in case of error
+    connection.release();
+
+    return response.status(400).json({
+      message: "Some problem occurred: " + err.message,
+      success: false,
+    });
+  }
 };
+
+module.exports.getCountById = async (request, response) => {
+  const connection = await db.conn();
+  const { id } = request.params;
+  console.log(id);
+  
+  // Corrected the SQL query syntax
+  const getticketcount = `SELECT COUNT(*) AS ticket_count FROM ticket WHERE user_id=${id}`;
+  const sumticket = `SELECT SUM(price) AS ticket_amount FROM ticket WHERE user_id=${id}`; // Added WHERE keyword
+
+  try {
+    const results = await Promise.all([
+      new Promise((resolve, reject) => {
+        connection.query(getticketcount, (err, result) => {
+          if (err) return reject(err);
+          resolve(result[0]);
+        });
+      }),
+      new Promise((resolve, reject) => {
+        connection.query(sumticket, (err, result) => {
+          if (err) return reject(err);
+          resolve(result[0]);
+        });
+      }),
+    ]);
+
+    // Release connection
+    connection.release();
+
+    // Combine results into a single object
+    const combinedResults = {
+      ticket_count: results[0].ticket_count|| 0, // Changed index to 0 to access correct result
+      ticket_amount: results[1].ticket_amount || 0, // Ensured to handle null case
+    };
+    console.log(combinedResults);
+
+    return response.status(200).json({
+      message: "success",
+      success: true,
+      data: combinedResults,
+    });
+  } catch (err) {
+    // Release connection in case of error
+    connection.release();
+
+    return response.status(400).json({
+      message: "Some problem occurred: " + err.message,
+      success: false,
+    });
+  }
+};
+
+

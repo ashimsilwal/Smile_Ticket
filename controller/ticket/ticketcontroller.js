@@ -6,6 +6,27 @@ const dotenv = require("dotenv");
 dotenv.config();
 const db = require("../../constant/db");
 
+module.exports.getAlltickets = async (request, response) => {
+  const connection = await db.conn();
+
+  const getquery = `SELECT CONCAT('http://localhost:8080/', ticket.payment_proof) AS ticketpayment_proof, ticket.id as ticket_id, ticket.*,register.* FROM ticket LEFT JOIN register ON register.id = ticket.user_id`;
+  connection.query(getquery, (err, result) => {
+    connection.release();
+    if (err) {
+      return response.status(400).json({
+        message: "Some problem occured",
+        success: false,
+      });
+    } else {
+      return response.status(200).json({
+        message: "success",
+        success: true,
+        data: result,
+      });
+    }
+  });
+};
+
 module.exports.gettickets = async (request, response) => {
   const connection = await db.conn();
  console.log(request.params.id)
@@ -99,3 +120,31 @@ module.exports.getticketById = async (request, response) => {
     }
   });
 };
+
+
+module.exports.changestatus = async (request, response) => {
+  const connection = await db.conn();
+  const { value } = request.body; // Ensure 'value' is used correctly
+  const { id } = request.params;
+
+  // Use parameterized query to prevent SQL injection
+  const updateQuery = `UPDATE ticket SET status = ? WHERE id = ?`;
+
+  connection.query(updateQuery, [value, id], (err, result) => {
+    connection.release(); // Ensure connection is released
+    if (err) {
+      console.error(err); // Log the error for debugging
+      return response.status(400).json({
+        message: "Some problem occurred",
+        success: false,
+      });
+    } else {
+      return response.status(200).json({
+        message: "Success",
+        success: true,
+        data: result,
+      });
+    }
+  });
+};
+
