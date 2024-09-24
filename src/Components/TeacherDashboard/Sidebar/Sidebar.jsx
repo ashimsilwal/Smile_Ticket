@@ -1,8 +1,8 @@
 import React from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import './Sidebar.css';
 import { MdDashboard } from 'react-icons/md'; // Import MdDashboard
-import { FaCalendarCheck, FaVideo, FaSignOutAlt } from 'react-icons/fa'; // Import other icons
+import { FaCalendarCheck, FaSignOutAlt } from 'react-icons/fa'; // Import other icons
 import { TbBusStop } from 'react-icons/tb';
 
 const Sidebar = () => {
@@ -23,9 +23,9 @@ const Sidebar = () => {
           </NavLink>
         </li>
         <li>
-          <NavLink to="/admin/ticket" className="nav-link">
+          <Link to="/admin/ticket" className="nav-link">
             <FaCalendarCheck className="icon" />
-          </NavLink>
+          </Link>
         </li>
         
       </ul>

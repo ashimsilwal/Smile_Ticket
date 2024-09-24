@@ -12,7 +12,7 @@ const TeacherDashboard = () => {
     <div className="teacher-dashboard">
       <Sidebar />
       <div className="main-content">
-        <Header head='Bus Passenger Dashboard'/>
+        <Header head='Admin  Dashboard'/>
         <Outlet /> 
       </div>
     </div>

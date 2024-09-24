@@ -25,6 +25,7 @@ import CustomerDashboardContent from './Components/TeacherDashboard/CustomerDash
 import CustomerAttendanceRecords from './Components/TeacherDashboard/AttendanceRecords/CustomerAttendanceRecords';
 import BuyTicket from './Components/TeacherDashboard/Ticket/buyticket';
 import Ticket from './Components/AdminDashboard/Tickets/ticket';
+import TicketDetails from './Components/AdminDashboard/Tickets/TicketDetails';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -75,7 +76,8 @@ function App() {
             <Route path="/admin" element={<TeacherDashboard />}> 
               <Route index element={<DashboardContent />} /> {/* Reuse MainDashboard */}
               <Route path="dashboard" element={<DashboardContent />} /> {/* Reuse MainDashboard */}
-              <Route path="attendance" element={<Ticket />} /> {/* Reuse Attendance */}
+              <Route path="ticket" element={<Ticket />} />
+              <Route path="ticket/:id" element={<TicketDetails />} />
               
             </Route>
          

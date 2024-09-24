@@ -86,20 +86,7 @@ const LiveAttendance = () => {
       <div className="live-attendance__container">
         <div className="live-video-section">
           <h3>Live Video</h3>
-          <div className="video-controls">
-            {selectedSem && (
-              <div className="selected-item">
-                <span>{selectedSem}</span>
-                <button onClick={handleCloseSem}>×</button>
-              </div>
-            )}
-            {selectedSubject && (
-              <div className="selected-item">
-                <span>{selectedSubject}</span>
-                <button onClick={handleCloseSubject}>×</button>
-              </div>
-            )}
-          </div>
+          
           <div className="video-container">
             {/* Placeholder for video */}
             <div className="video-placeholder">
@@ -109,65 +96,7 @@ const LiveAttendance = () => {
           </div>
         </div>
 
-        <div className="detected-students">
-          <h3>Detected Customers</h3>
-
-          <div className="student-summary">
-            <div className="summary-item">
-              <h4>Total Detected:</h4>
-              <p>{detectedStudents.length}</p>
-            </div>
-            <div className="summary-item">
-              <h4>Latest Detected:</h4>
-              <p>{detectedStudents.length > 0
-                  ? detectedStudents[detectedStudents.length - 1].studentName
-                  : 'None yet'}</p>
-            </div>
-          </div>
-
-          <table>
-            <thead>
-              <tr>
-                <th></th>
-                <th>SN No</th>
-                <th>Customer Name</th>
-                <th>Customer ID</th>
-              </tr>
-            </thead>
-            <tbody>
-              {currentStudents.map((student, index) => (
-                <tr key={student.rollNo}>
-                  <td>
-                    <img 
-                      src={
-                        index === 0 ? userImage1 : 
-                        index === 1 ? userImage2 :
-                        index === 2 ? userImage3 : 
-                        userImage4 
-                      } 
-                      alt="User" 
-                      className="user-image" 
-                    />
-                  </td>
-                  <td>{student.rollNo}</td>
-                  <td>{student.studentName}</td>
-                  <td className="student-id">{student.studentId}</td> 
-                </tr>
-              ))}
-            </tbody>
-          </table>
-          <div className="pagination">
-            <button onClick={handlePrevPage} disabled={currentPage === 1}>
-              <FaChevronLeft className="icon" /> Previous
-            </button>
-            <button
-              onClick={handleNextPage}
-              disabled={currentPage === Math.ceil(detectedStudents.length / studentsPerPage)}
-            >
-              Next <FaChevronRight className="icon" />
-            </button>
-          </div>
-        </div>
+        
       </div>
     </div>
   );
