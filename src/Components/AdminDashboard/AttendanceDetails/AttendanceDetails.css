@@ -1,0 +1,109 @@
+/* AttendanceDetails.css */
+.ticket-details-container {
+  margin-left: 240px;
+  margin-top: 100px;
+  padding: 20px;
+}
+
+.back-button {
+  margin-bottom: 20px;
+}
+
+.back-button a {
+  text-decoration: none;
+  color: #2b60ec;
+  font-weight: bold;
+}
+
+.ticket-details__container {
+  display: flex;
+  gap: 20px;
+}
+
+.class-details,
+.student-attendance {
+  background-color: white;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.class-details {
+  flex: 1;
+}
+
+.student-attendance {
+  width: 35%;
+}
+
+.class-details h3,
+.student-attendance h3 {
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.class-details p {
+  margin-bottom: 5px;
+}
+
+/* Table Styling */
+.student-attendance table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.student-attendance th,
+.student-attendance td {
+  text-align: left;
+  padding: 8px;
+  border-bottom: 1px solid #eee;
+}
+
+.student-attendance th {
+  font-weight: 600;
+}
+
+.user-image {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+
+/* Attendance Controls */
+.attendance-controls {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.filter-attendance {
+  display: flex;
+  gap: 10px;
+}
+
+.filter-btn {
+  background-color: #e9ecef;
+  color: #333;
+  border: 1px solid #ccc;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.filter-btn.active {
+  background-color: #2bec2b;
+  color: white;
+  border: none;
+}
+
+.download-csv {
+  background-color: #35ec2b;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+}
