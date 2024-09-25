@@ -67,7 +67,7 @@ const BuyTicket = () => {
         {renderapp && (
           <div>
             <div className="my-8 bg-white shadow-lg rounded-lg overflow-hidden">
-              <div className="bg-blue-600 items-center flex justify-between text-white px-6 py-4">
+              <div className="bg-[#4fa021] items-center flex justify-between text-white px-6 py-4">
                 <h1 className="text-2xl font-bold">Bus Ticket</h1>
                 <p className="font-bold">{ticketData.status}...</p>
               </div>
@@ -83,7 +83,7 @@ const BuyTicket = () => {
                   <div className="text-right">
                     <p className="text-sm text-gray-600">Ticket No.</p>
                     <p className="text-lg font-semibold">
-                      {ticketData.transaction_id}
+                      {ticketData.ticket_number}
                     </p>
                   </div>
                 </div>
@@ -201,7 +201,7 @@ const BuyTicket = () => {
               </div>
               <button
                 type="submit"
-                className="w-full px-4 py-2 text-white bg-blue-600 hover:bg-blue-700 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                className="w-full px-4 py-2 text-white bg-[#4fa021] hover:bg-blue-700 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
               >
                 Purchase Ticket
               </button>

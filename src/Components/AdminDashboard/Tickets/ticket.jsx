@@ -114,7 +114,7 @@ const Ticket = () => {
                 {currentEntries.map((entry, index) => (
                   <tr key={index}>
                     <td>{entry.full_name}</td>
-                    <td>{entry.transaction_id}</td>
+                    <td>{entry.ticket_number}</td>
                     <td>{entry.start_date}</td>
                     <td>{entry.end_date}</td>
                     <td>{entry.package}</td>
@@ -165,7 +165,7 @@ const Ticket = () => {
       <div className="grid gap-2 grid-cols-3 ticket-container">
         {currentEntries.map((entry, index) => (
           <div className="my-8 bg-white shadow-lg rounded-lg overflow-hidden">
-            <div className="bg-blue-600 items-center flex justify-between text-white px-6 py-4">
+            <div className="bg-[#4fa021] items-center flex justify-between text-white px-6 py-4">
               <h1 className="text-2xl font-bold">Bus Ticket</h1>
               <p className="font-bold">{entry.status}</p>
             </div>
@@ -179,7 +179,7 @@ const Ticket = () => {
                 <div className="text-right">
                   <p className="text-sm text-gray-600">Ticket No.</p>
                   <p className="text-lg font-semibold">
-                    {entry.transaction_id}
+                    {entry.ticket_number}
                   </p>
                 </div>
               </div>

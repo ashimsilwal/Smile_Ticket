@@ -1,5 +1,5 @@
 .sidebar {
-  background-color: #3a4afc;
+  background-color: #4fa021;
   color: white;
   width: 80px; /* Adjust width as needed */
   min-height: 95vh;
@@ -42,11 +42,11 @@
 }
 
 .nav-link:hover {
-  background-color: #4f58c5;
+  background-color: #39840e;
 }
 
 .nav-link.active {
-  background-color: #4f58c5;
+  background-color: #39840e;
 }
 
 .icon {

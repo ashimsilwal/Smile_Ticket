@@ -107,28 +107,21 @@ const CustomerAttendanceRecords = () => {
                   <th>Package Type</th>
                   <th>Amount</th>
                   <th>Status</th>
-                  <th>Action</th>
+                 
                 </tr>
               </thead>
               <tbody>
                 {currentEntries.map((entry, index) => (
                   <tr key={index}>
                     <td>{entry.full_name}</td>
-                    <td>{entry.transaction_id}</td>
+                    <td>{entry.ticket_number}</td>
                     <td>{entry.start_date}</td>
                     <td>{entry.end_date}</td>
                     <td>{entry.package}</td>
                     <td>{entry.price}</td>
 
                     <td>{entry.status}</td>
-                    <td>
-                      <Link
-                        to={`/admin/attendance/${entry.ticketNumber}`}
-                        className="details-button"
-                      >
-                        Details
-                      </Link>
-                    </td>
+                    
                   </tr>
                 ))}
               </tbody>
@@ -165,7 +158,7 @@ const CustomerAttendanceRecords = () => {
       <div className="grid gap-2 grid-cols-3 ticket-container">
         {currentEntries.map((entry, index) => (
           <div className="my-8 bg-white shadow-lg rounded-lg overflow-hidden">
-            <div className="bg-blue-600 items-center flex justify-between text-white px-6 py-4">
+            <div className="bg-[#4fa021] items-center flex justify-between text-white px-6 py-4">
               <h1 className="text-2xl font-bold">Bus Ticket</h1>
               <p className="font-bold">{entry.status}...</p>
             </div>
@@ -179,7 +172,7 @@ const CustomerAttendanceRecords = () => {
                 <div className="text-right">
                   <p className="text-sm text-gray-600">Ticket No.</p>
                   <p className="text-lg font-semibold">
-                    {entry.transaction_id}
+                    {entry.ticket_number}
                   </p>
                 </div>
               </div>
