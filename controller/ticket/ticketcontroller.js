@@ -9,7 +9,7 @@ const db = require("../../constant/db");
 module.exports.getAlltickets = async (request, response) => {
   const connection = await db.conn();
 
-  const getquery = `SELECT CONCAT('http://localhost:8080/', ticket.payment_proof) AS ticketpayment_proof, ticket.id as ticket_id, ticket.*,register.* FROM ticket LEFT JOIN register ON register.id = ticket.user_id`;
+  const getquery = `SELECT CONCAT('http://localhost:8080/', ticket.payment_proof) AS ticketpayment_proof, ticket.id as ticket_id, ticket.*,register.* FROM ticket LEFT JOIN register ON register.id = ticket.user_id ORDER BY ticket.id DESC`;
   connection.query(getquery, (err, result) => {
     connection.release();
     if (err) {
@@ -27,10 +27,11 @@ module.exports.getAlltickets = async (request, response) => {
   });
 };
 
+
 module.exports.gettickets = async (request, response) => {
   const connection = await db.conn();
  console.log(request.params.id)
-  const getquery = `SELECT CONCAT('http://localhost:8080/', ticket.payment_proof) AS ticketpayment_proof, ticket.*,register.* FROM ticket LEFT JOIN register ON register.id = ticket.user_id where ticket.user_id=${request.params.id}`;
+  const getquery = `SELECT CONCAT('http://localhost:8080/', ticket.payment_proof) AS ticketpayment_proof, ticket.*,register.* FROM ticket LEFT JOIN register ON register.id = ticket.user_id where ticket.user_id=${request.params.id} ORDER BY ticket.id DESC`;
   connection.query(getquery, (err, result) => {
     connection.release();
     if (err) {
@@ -52,6 +53,10 @@ module.exports.storeTicket = async (request, response) => {
  
   const connection = await db.conn();
   const data = request.body;
+  
+    const random= Math.floor(10000 + Math.random() * 90000);
+
+
   data.start_date = new Date();
   if (data.package === "1 Month") {
     let endDate = new Date();
@@ -79,6 +84,7 @@ module.exports.storeTicket = async (request, response) => {
   else{
     data.payment_proof=null;
   }
+  data.ticket_number=random;
 
   console.log(data);
   
