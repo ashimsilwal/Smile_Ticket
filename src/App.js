@@ -65,8 +65,8 @@ function App() {
               <Route index element={<CustomerDashboardContent />} />
               <Route path="dashboard" element={<CustomerDashboardContent />} />
               <Route path="buyticket" element={<BuyTicket />} />
-              <Route path="attendance" element={<CustomerAttendanceRecords />} />
-              <Route path="live-attendance" element={<LiveAttendance />} />
+              <Route path="ticketinformation" element={<CustomerAttendanceRecords />} />
+              <Route path="live-preview" element={<LiveAttendance />} />
               <Route
                 path="attendance/:ticketNumber"
                 element={<AttendanceDetails />}

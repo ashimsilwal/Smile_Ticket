@@ -23,12 +23,12 @@ const Sidebar = () => {
           </NavLink>
         </li>
         <li>
-          <NavLink to="/customer/attendance" className="nav-link">
+          <NavLink to="/customer/ticketinformation" className="nav-link">
             <FaCalendarCheck className="icon" />
           </NavLink>
         </li>
         <li>
-          <NavLink to="/customer/live-attendance" className="nav-link">
+          <NavLink to="/customer/live-preview" className="nav-link">
             <FaVideo className="icon" />
           </NavLink>
         </li>
